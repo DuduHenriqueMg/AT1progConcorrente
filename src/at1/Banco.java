@@ -1,22 +1,30 @@
 package at1;
-
-
+import java.util.concurrent.locks.Lock;
 
 public class Banco {
-
-	public void transferir(double valor, Conta contaA, Conta contaB) {
-		if(contaA.getSaldo() >= valor){
-			
-			if(contaA.sacar(valor)){
-				contaB.depositar(valor);
-			}else {
-				System.out.println("\nNao foi possivel sacar");
-			}
-		}else {
-			System.out.println("\n Nao foi possivel tranferir");
-		}
+	private Lock lock;
+	
+	public Banco(Lock lock) {
+		this.lock = lock;
 	}
 	
-	
+	public void transferir(double valor, Conta contaA, Conta contaB) {
+		this.lock.lock();
+		
+		try {
+			if(contaA.getSaldo() >= valor){
+				contaA.sacar(valor);
+				contaB.depositar(valor);
+				
+			}else {
+				System.out.println("\n Nao foi possivel tranferir");
+			}
+			
+		} finally {
+			this.lock.unlock();
+		}
+		
+		
+	}
 	
 }
