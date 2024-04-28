@@ -27,20 +27,19 @@ public class Cliente extends Thread{
 			if (this.conta.getSaldo() >= valor_compra) {
                 if (random.nextBoolean()) {
                     this.banco.transferir(valor_compra, this.conta, this.lojaA.getConta());
-                    System.out.println(this.name + " realizou uma compra de R$" + valor_compra + " na loja A, Saldo restante: R$" + this.conta.getSaldo());
+                    System.out.println(this.name + " realizou uma compra de R$" + valor_compra + " na loja A, Saldo restante: R$" + this.conta.getSaldo() + ". Saldo da loja: " + this.lojaA.saldo());
                    
                 } else {
                     this.banco.transferir(valor_compra, this.conta, this.lojaB.getConta());
-                    System.out.println(this.name + " realizou uma compra de R$" + valor_compra + " na loja , Saldo restante: R$" + this.conta.getSaldo());
+                    System.out.println(this.name + " realizou uma compra de R$" + valor_compra + " na loja , Saldo restante: R$" + this.conta.getSaldo() + ". Saldo da loja: " + this.lojaB.saldo());
 	            }
-                try {
-    	            Thread.sleep(1000); 
-    	        } catch (InterruptedException e) {
-    	            e.printStackTrace();
-    	        }
-            }
+	            try {
+		            Thread.sleep(1000); 
+		        } catch (InterruptedException e) {
+		            e.printStackTrace();
+		        }
+			}
 		}
-		
 		System.out.println(this.name +": R$"+ this.conta.getSaldo());
 		
 	}

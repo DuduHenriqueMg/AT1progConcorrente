@@ -17,7 +17,7 @@ public class Banco {
 				contaB.depositar(valor);
 				
 			}else {
-				System.out.println("\n Nao foi possivel tranferir");
+				System.out.println("Nao foi possivel transferir ");
 			}
 			
 		} finally {

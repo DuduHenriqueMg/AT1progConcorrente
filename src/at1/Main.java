@@ -19,16 +19,17 @@ public class Main {
 		cliente2.start();
 		cliente3.start();
 		cliente4.start();
+
+		Funcionario funcionario1 = new Funcionario("Rodrigo", new Conta(0), new Conta(0), lojaA, banco);
+		Funcionario funcionario2 = new Funcionario("Clerinton", new Conta(0), new Conta(0), lojaB, banco);
+		Funcionario funcionario3 = new Funcionario("Isabela", new Conta(0), new Conta(0), lojaA, banco);
+		Funcionario funcionario4 = new Funcionario("Amanda", new Conta(0), new Conta(0), lojaB, banco);
 		
-		try {
-			cliente1.join();
-			cliente2.join();
-			cliente3.join();
-			cliente4.join();
-		} catch (InterruptedException e) {
-			System.out.println("Erro ao chamar joins...");
-			e.printStackTrace();
-		}
+		funcionario1.start();
+		funcionario2.start();
+		funcionario3.start();
+		funcionario4.start();
+		
 		
 	}
 }
